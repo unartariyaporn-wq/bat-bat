@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bat Night Flight</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Night Flight</title>
 
 <style>
 
 *{
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 body{
     overflow:hidden;
     height:100vh;
 
-    background:linear-gradient(
-        to bottom,
-        #000000,
-        #1a0000,
-        #550000
-    );
+    background:
+    radial-gradient(circle at top right,#552222 0%,#220000 35%,#000000 100%);
 }
 
 /* พระจันทร์ */
 
 .moon{
     position:absolute;
-    top:60px;
-    right:100px;
 
-    width:150px;
-    height:150px;
+    top:60px;
+    right:120px;
+
+    width:180px;
+    height:180px;
 
     border-radius:50%;
 
-    background:#fff7c2;
+    background:#fff7cc;
 
     box-shadow:
-    0 0 30px #fff7c2,
-    0 0 80px #fff7c2,
-    0 0 120px #fff7c2;
+        0 0 40px #fff7cc,
+        0 0 120px #fff7cc;
+}
+
+/* ดาว */
+
+.star{
+    position:absolute;
+    color:white;
+    opacity:.8;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;}
+    to{opacity:1;}
 }
 
 /* หมอก */
 
 .fog{
     position:absolute;
-    width:200%;
-    height:150px;
+
+    width:250%;
+    height:160px;
 
     background:rgba(255,255,255,.05);
 
-    filter:blur(25px);
+    filter:blur(30px);
 
-    animation:fogMove 20s linear infinite;
+    animation:fogMove 30s linear infinite;
 }
 
 .fog1{
@@ -63,8 +75,8 @@ body{
 }
 
 .fog2{
-    top:350px;
-    animation-duration:35s;
+    top:380px;
+    animation-duration:45s;
 }
 
 @keyframes fogMove{
@@ -84,92 +96,151 @@ body{
 
     position:absolute;
 
-    font-size:90px;
-
-    filter:
-    drop-shadow(0 0 10px black);
+    width:260px;
 
     animation:
-    fly 12s linear infinite,
-    flap .18s infinite;
+        flyAcross 14s linear infinite,
+        float 2s ease-in-out infinite;
 }
 
-@keyframes flap{
+/* ปีก */
+
+.leftWing{
+    transform-origin:100% 50%;
+    animation:leftWing .15s infinite ease-in-out;
+}
+
+.rightWing{
+    transform-origin:0% 50%;
+    animation:rightWing .15s infinite ease-in-out;
+}
+
+@keyframes leftWing{
 
     0%,100%{
-        transform:scaleY(1);
+        transform:rotate(0deg);
     }
 
     50%{
-        transform:scaleY(.8);
+        transform:rotate(-45deg);
     }
 }
 
-/* บินข้ามจอ */
+@keyframes rightWing{
 
-@keyframes fly{
-
-    0%{
-        left:-150px;
-        top:55%;
+    0%,100%{
+        transform:rotate(0deg);
     }
 
-    25%{
+    50%{
+        transform:rotate(45deg);
+    }
+}
+
+/* บินผ่านจอ */
+
+@keyframes flyAcross{
+
+    0%{
+        left:-300px;
+        top:60%;
+    }
+
+    20%{
         top:35%;
     }
 
-    50%{
+    40%{
         top:50%;
     }
 
-    75%{
+    60%{
         top:30%;
+    }
+
+    80%{
+        top:45%;
     }
 
     100%{
         left:110%;
-        top:45%;
+        top:55%;
     }
 }
 
-/* ดาว */
+/* ลอยขึ้นลง */
 
-.star{
-    position:absolute;
-    color:white;
-    font-size:12px;
-    animation:twinkle 2s infinite alternate;
+@keyframes float{
+
+    0%,100%{
+        margin-top:0;
+    }
+
+    50%{
+        margin-top:-20px;
+    }
 }
 
-@keyframes twinkle{
-
-    from{
-        opacity:.2;
-    }
-
-    to{
-        opacity:1;
-    }
+.eye{
+    fill:red;
+    filter:drop-shadow(0 0 8px red);
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="moon"></div>
 
+<div class="star" style="left:80px;top:70px;">✦</div>
+<div class="star" style="left:250px;top:130px;">✦</div>
+<div class="star" style="left:500px;top:80px;">✦</div>
+<div class="star" style="left:850px;top:150px;">✦</div>
+<div class="star" style="left:1200px;top:100px;">✦</div>
+
 <div class="fog fog1"></div>
 <div class="fog fog2"></div>
 
-<div class="star" style="top:100px;left:100px;">✦</div>
-<div class="star" style="top:200px;left:250px;">✦</div>
-<div class="star" style="top:150px;left:500px;">✦</div>
-<div class="star" style="top:80px;left:800px;">✦</div>
-<div class="star" style="top:250px;left:1200px;">✦</div>
+<svg class="bat" viewBox="0 0 500 250">
 
-<div class="bat">🦇</div>
+    <!-- ปีกซ้าย -->
+    <g class="leftWing">
+        <path d="
+        M250 125
+        Q180 40 60 90
+        Q90 120 50 170
+        Q120 140 170 180
+        Q200 145 250 125"
+        fill="#111"/>
+    </g>
+
+    <!-- ปีกขวา -->
+    <g class="rightWing">
+        <path d="
+        M250 125
+        Q320 40 440 90
+        Q410 120 450 170
+        Q380 140 330 180
+        Q300 145 250 125"
+        fill="#111"/>
+    </g>
+
+    <!-- ตัว -->
+    <ellipse cx="250" cy="130" rx="22" ry="50" fill="#111"/>
+
+    <!-- หัว -->
+    <circle cx="250" cy="85" r="22" fill="#111"/>
+
+    <!-- หู -->
+    <polygon points="235,65 242,35 248,65" fill="#111"/>
+    <polygon points="265,65 258,35 252,65" fill="#111"/>
+
+    <!-- ตา -->
+    <circle class="eye" cx="243" cy="83" r="2"/>
+    <circle class="eye" cx="257" cy="83" r="2"/>
+
+</svg>
 
 </body>
 </html>
