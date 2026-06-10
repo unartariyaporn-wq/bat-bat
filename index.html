@@ -3,14 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Night Bat</title>
+<title>Bat Night Flight</title>
 
 <style>
 
 *{
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 body{
@@ -20,7 +19,7 @@ body{
     background:linear-gradient(
         to bottom,
         #000000,
-        #220000,
+        #1a0000,
         #550000
     );
 }
@@ -30,40 +29,41 @@ body{
 .moon{
     position:absolute;
     top:60px;
-    right:120px;
+    right:100px;
 
-    width:140px;
-    height:140px;
+    width:150px;
+    height:150px;
 
     border-radius:50%;
 
-    background:#fff6c7;
+    background:#fff7c2;
 
     box-shadow:
-    0 0 30px #fff6c7,
-    0 0 80px #fff6c7;
+    0 0 30px #fff7c2,
+    0 0 80px #fff7c2,
+    0 0 120px #fff7c2;
 }
 
 /* หมอก */
 
 .fog{
     position:absolute;
-    width:250%;
-    height:200px;
+    width:200%;
+    height:150px;
 
     background:rgba(255,255,255,.05);
 
-    filter:blur(30px);
+    filter:blur(25px);
 
-    animation:fogMove 25s linear infinite;
+    animation:fogMove 20s linear infinite;
 }
 
 .fog1{
-    top:120px;
+    top:180px;
 }
 
 .fog2{
-    top:300px;
+    top:350px;
     animation-duration:35s;
 }
 
@@ -81,92 +81,75 @@ body{
 /* ค้างคาว */
 
 .bat{
+
     position:absolute;
 
-    width:250px;
+    font-size:90px;
+
+    filter:
+    drop-shadow(0 0 10px black);
 
     animation:
-    flyAcross 12s linear infinite,
-    float 2s ease-in-out infinite;
+    fly 12s linear infinite,
+    flap .18s infinite;
 }
 
-/* ปีก */
+@keyframes flap{
 
-.left-wing{
-    transform-origin:95% 50%;
-    animation:leftFlap .08s infinite ease-in-out;
-}
-
-.right-wing{
-    transform-origin:5% 50%;
-    animation:rightFlap .08s infinite ease-in-out;
-}
-
-@keyframes leftFlap{
-
-    0%{
-        transform:rotate(0deg);
+    0%,100%{
+        transform:scaleY(1);
     }
 
     50%{
-        transform:rotate(-75deg);
-    }
-
-    100%{
-        transform:rotate(0deg);
-    }
-}
-
-@keyframes rightFlap{
-
-    0%{
-        transform:rotate(0deg);
-    }
-
-    50%{
-        transform:rotate(75deg);
-    }
-
-    100%{
-        transform:rotate(0deg);
+        transform:scaleY(.8);
     }
 }
 
 /* บินข้ามจอ */
 
-@keyframes flyAcross{
+@keyframes fly{
 
     0%{
-        left:-300px;
-        top:45%;
+        left:-150px;
+        top:55%;
+    }
+
+    25%{
+        top:35%;
     }
 
     50%{
-        left:50%;
-        top:35%;
+        top:50%;
+    }
+
+    75%{
+        top:30%;
     }
 
     100%{
         left:110%;
-        top:50%;
+        top:45%;
     }
 }
 
-/* ลอยขึ้นลง */
+/* ดาว */
 
-@keyframes float{
-
-    0%,100%{
-        margin-top:0px;
-    }
-
-    50%{
-        margin-top:-20px;
-    }
+.star{
+    position:absolute;
+    color:white;
+    font-size:12px;
+    animation:twinkle 2s infinite alternate;
 }
 
-.eye{
-    filter:drop-shadow(0 0 10px red);
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+    }
+
+    to{
+        opacity:1;
+    }
 }
 
 </style>
@@ -180,66 +163,13 @@ body{
 <div class="fog fog1"></div>
 <div class="fog fog2"></div>
 
-<svg class="bat" viewBox="0 0 600 300">
+<div class="star" style="top:100px;left:100px;">✦</div>
+<div class="star" style="top:200px;left:250px;">✦</div>
+<div class="star" style="top:150px;left:500px;">✦</div>
+<div class="star" style="top:80px;left:800px;">✦</div>
+<div class="star" style="top:250px;left:1200px;">✦</div>
 
-```
-<g class="left-wing">
-    <path
-    d="M300 150
-       Q220 70 100 100
-       Q130 130 100 170
-       Q160 150 190 190
-       Q220 160 300 150"
-    fill="#1d1d1d"/>
-</g>
-
-<g class="right-wing">
-    <path
-    d="M300 150
-       Q380 70 500 100
-       Q470 130 500 170
-       Q440 150 410 190
-       Q380 160 300 150"
-    fill="#1d1d1d"/>
-</g>
-
-<ellipse
-    cx="300"
-    cy="150"
-    rx="25"
-    ry="55"
-    fill="#222"/>
-
-<circle
-    cx="300"
-    cy="90"
-    r="25"
-    fill="#222"/>
-
-<polygon
-    points="285,65 292,35 300,65"
-    fill="#222"/>
-
-<polygon
-    points="315,65 308,35 300,65"
-    fill="#222"/>
-
-<circle
-    class="eye"
-    cx="292"
-    cy="88"
-    r="3"
-    fill="red"/>
-
-<circle
-    class="eye"
-    cx="308"
-    cy="88"
-    r="3"
-    fill="red"/>
-```
-
-</svg>
+<div class="bat">🦇</div>
 
 </body>
 </html>
