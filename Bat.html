@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Flapping Bat</title>
+
+<style>
+
+body{
+    margin:0;
+  background:#660000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.bat{
+    width:350px;
+    animation:float 2s ease-in-out infinite;
+}
+
+.left-wing{
+    transform-origin:95% 50%;
+    animation:leftFlap .18s infinite ease-in-out;
+}
+
+.right-wing{
+    transform-origin:5% 50%;
+    animation:rightFlap .18s infinite ease-in-out;
+}
+
+@keyframes leftFlap{
+    0%   { transform:rotate(0deg); }
+    50%  { transform:rotate(-35deg); }
+    100% { transform:rotate(0deg); }
+}
+
+@keyframes rightFlap{
+    0%   { transform:rotate(0deg); }
+    50%  { transform:rotate(35deg); }
+    100% { transform:rotate(0deg); }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<svg class="bat" viewBox="0 0 600 300">
+
+    <!-- Left Wing -->
+    <g class="left-wing">
+        <path
+            d="M300 150
+               Q220 70 100 100
+               Q130 130 100 170
+               Q160 150 190 190
+               Q220 160 300 150"
+            fill="#222"/>
+    </g>
+
+    <!-- Right Wing -->
+    <g class="right-wing">
+        <path
+            d="M300 150
+               Q380 70 500 100
+               Q470 130 500 170
+               Q440 150 410 190
+               Q380 160 300 150"
+            fill="#222"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse
+        cx="300"
+        cy="150"
+        rx="25"
+        ry="55"
+        fill="#333"/>
+
+    <!-- Head -->
+    <circle
+        cx="300"
+        cy="90"
+        r="25"
+        fill="#333"/>
+
+    <!-- Ears -->
+    <polygon
+        points="285,65 292,35 300,65"
+        fill="#333"/>
+
+    <polygon
+        points="315,65 308,35 300,65"
+        fill="#333"/>
+
+    <!-- Eyes -->
+    <circle cx="292" cy="88" r="2" fill="red"/>
+    <circle cx="308" cy="88" r="2" fill="red"/>
+
+</svg>
+
+</body>
+</html>
