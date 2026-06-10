@@ -1,119 +1,243 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Flapping Bat</title>
+<title>Night Bat</title>
 
 <style>
 
-body{
+*{
     margin:0;
-    background:linear-gradient(
-    to bottom,
-    #000,
-    #330000,
-    #990000
-);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.bat{
-    width:350px;
-    animation:float 2s ease-in-out infinite;
+body{
+    overflow:hidden;
+    height:100vh;
+
+    background:linear-gradient(
+        to bottom,
+        #000000,
+        #220000,
+        #550000
+    );
 }
+
+/* พระจันทร์ */
+
+.moon{
+    position:absolute;
+    top:60px;
+    right:120px;
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    background:#fff6c7;
+
+    box-shadow:
+    0 0 30px #fff6c7,
+    0 0 80px #fff6c7;
+}
+
+/* หมอก */
+
+.fog{
+    position:absolute;
+    width:250%;
+    height:200px;
+
+    background:rgba(255,255,255,.05);
+
+    filter:blur(30px);
+
+    animation:fogMove 25s linear infinite;
+}
+
+.fog1{
+    top:120px;
+}
+
+.fog2{
+    top:300px;
+    animation-duration:35s;
+}
+
+@keyframes fogMove{
+
+    from{
+        transform:translateX(-50%);
+    }
+
+    to{
+        transform:translateX(0%);
+    }
+}
+
+/* ค้างคาว */
+
+.bat{
+    position:absolute;
+
+    width:250px;
+
+    animation:
+    flyAcross 12s linear infinite,
+    float 2s ease-in-out infinite;
+}
+
+/* ปีก */
 
 .left-wing{
     transform-origin:95% 50%;
-    animation:leftFlap .18s infinite ease-in-out;
+    animation:leftFlap .08s infinite ease-in-out;
 }
 
 .right-wing{
     transform-origin:5% 50%;
-    animation:rightFlap .18s infinite ease-in-out;
+    animation:rightFlap .08s infinite ease-in-out;
 }
 
 @keyframes leftFlap{
-    0%   { transform:rotate(0deg); }
-    50%  { transform:rotate(-35deg); }
-    100% { transform:rotate(0deg); }
-}
 
-@keyframes rightFlap{
-    0%   { transform:rotate(0deg); }
-    50%  { transform:rotate(35deg); }
-    100% { transform:rotate(0deg); }
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0px);
+    0%{
+        transform:rotate(0deg);
     }
 
     50%{
-        transform:translateY(-20px);
+        transform:rotate(-75deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
     }
 }
 
+@keyframes rightFlap{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    50%{
+        transform:rotate(75deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
+    }
+}
+
+/* บินข้ามจอ */
+
+@keyframes flyAcross{
+
+    0%{
+        left:-300px;
+        top:45%;
+    }
+
+    50%{
+        left:50%;
+        top:35%;
+    }
+
+    100%{
+        left:110%;
+        top:50%;
+    }
+}
+
+/* ลอยขึ้นลง */
+
+@keyframes float{
+
+    0%,100%{
+        margin-top:0px;
+    }
+
+    50%{
+        margin-top:-20px;
+    }
+}
+
+.eye{
+    filter:drop-shadow(0 0 10px red);
+}
+
 </style>
+
 </head>
 
 <body>
 
+<div class="moon"></div>
+
+<div class="fog fog1"></div>
+<div class="fog fog2"></div>
+
 <svg class="bat" viewBox="0 0 600 300">
 
-    <!-- Left Wing -->
-    <g class="left-wing">
-        <path
-            d="M300 150
-               Q220 70 100 100
-               Q130 130 100 170
-               Q160 150 190 190
-               Q220 160 300 150"
-            fill="#222"/>
-    </g>
+```
+<g class="left-wing">
+    <path
+    d="M300 150
+       Q220 70 100 100
+       Q130 130 100 170
+       Q160 150 190 190
+       Q220 160 300 150"
+    fill="#1d1d1d"/>
+</g>
 
-    <!-- Right Wing -->
-    <g class="right-wing">
-        <path
-            d="M300 150
-               Q380 70 500 100
-               Q470 130 500 170
-               Q440 150 410 190
-               Q380 160 300 150"
-            fill="#222"/>
-    </g>
+<g class="right-wing">
+    <path
+    d="M300 150
+       Q380 70 500 100
+       Q470 130 500 170
+       Q440 150 410 190
+       Q380 160 300 150"
+    fill="#1d1d1d"/>
+</g>
 
-    <!-- Body -->
-    <ellipse
-        cx="300"
-        cy="150"
-        rx="25"
-        ry="55"
-        fill="#333"/>
+<ellipse
+    cx="300"
+    cy="150"
+    rx="25"
+    ry="55"
+    fill="#222"/>
 
-    <!-- Head -->
-    <circle
-        cx="300"
-        cy="90"
-        r="25"
-        fill="#333"/>
+<circle
+    cx="300"
+    cy="90"
+    r="25"
+    fill="#222"/>
 
-    <!-- Ears -->
-    <polygon
-        points="285,65 292,35 300,65"
-        fill="#333"/>
+<polygon
+    points="285,65 292,35 300,65"
+    fill="#222"/>
 
-    <polygon
-        points="315,65 308,35 300,65"
-        fill="#333"/>
+<polygon
+    points="315,65 308,35 300,65"
+    fill="#222"/>
 
-    <!-- Eyes -->
-    <circle cx="292" cy="88" r="2" fill="red"/>
-    <circle cx="308" cy="88" r="2" fill="red"/>
+<circle
+    class="eye"
+    cx="292"
+    cy="88"
+    r="3"
+    fill="red"/>
+
+<circle
+    class="eye"
+    cx="308"
+    cy="88"
+    r="3"
+    fill="red"/>
+```
 
 </svg>
 
